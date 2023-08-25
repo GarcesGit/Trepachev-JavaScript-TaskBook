@@ -363,3 +363,204 @@ for (let key in obj){
 }
 console.log(sum);
 </script>
+
+<script> //3.6.1
+//Дан массив со числами. Удалите из него числа, состоящие более чем из трех цифр.
+let arr = [123, 1234, 12345];
+let split = String(arr).split(',');
+let newArr = split.filter(elem => elem.length < 4);
+console.log(newArr);
+</script>
+
+<script> //3.6.2
+//Проверьте, что все цифры этого числа больше нуля.
+let num = 123450;
+let spl = String(num).split('');
+for (let i = 0; i <= spl.length; i++) {
+console.log(spl[i] > 0 ? true : false);
+}
+</script>
+
+<script> //3.6.3
+//Слейте все элементы этого массива в один массив, разбив их посимвольно:[1, 2, 3, 4, 5, 6, 7, 8, 9]
+let arr = [123, 456, 789];
+let split = String(arr).split('');
+console.log(split.filter(elem => elem >= 0));
+</script>
+
+<script> //3.6.4
+//Найдите сумму элементов этой структуры.
+let data = [
+	{
+		1: 11,
+		2: 12,
+		3: 13,
+	},
+	{
+		1: 21,
+		2: 22,
+		3: 23,
+	},
+	{
+		1: 24,
+		2: 25,
+		3: 26,
+	},
+];
+let sum = 0;
+for (let subObj of data){
+for (let key in subObj){
+	sum += subObj[key];
+}
+}
+console.log(sum);
+</script>
+
+
+<script> //3.7.1
+//Дана строка со словами. Отсортируйте слова в алфавитном порядке.
+let str = 'Дана строка со словами. Отсортируйте слова в алфавитном порядке.';
+let sort = str.toLowerCase().split(' ').sort();
+console.log(sort);
+</script>
+
+<script> //3.7.2
+//Дано число. Получите массив делителей этого числа.
+let num = 50;
+let div = [];
+for (let i = 1; i <= num; i++) {
+if (num % i == 0){
+	div.push(i);
+	}
+}
+console.log(div);
+</script>
+
+<script> //3.7.3
+//Даны два числа. Получите массив общих делителей этих чисел.
+let num1 = 50;
+let div1 = [];
+for (let i = 1; i <= num1; i++) {
+if (num1 % i == 0){
+	div1.push(i);
+	}
+}
+
+let num2 = 25;
+let div2 = [];
+for (let j = 1; j <= num2; j++) {
+if (num2 % j == 0){
+	div2.push(j);
+	}
+}
+
+let commonDiv = [];
+	for (let elem1 of div1){
+		for (let elem2 of div2){
+			if (elem1 == elem2){
+				commonDiv.push(elem2);
+			}
+		}
+	}
+console.log(commonDiv);
+</script>
+
+<script> //3.7.4
+//Дано число. Проверьте, что у этого числа есть только один делитель, кроме него самого и единицы.
+let num = 4;
+let div = [];
+
+for (let i = 2; i < num; i++) {
+	if (num % i == 0){
+		div.push(i);
+		}
+	}
+
+if (div.length == 1){
+	console.log(true);
+	} else {
+		console.log(false);
+	}
+console.log(div);
+</script>
+
+<script> //3.7.5
+//Через запятую написаны числа. Получите максимальное из этих чисел.
+let nums = '12, 123, 1234';
+let arr = nums.split(',');
+console.log(Math.max.apply(null, arr));
+</script>
+
+<script> //3.7.6
+//ЗАДАЧА68 !!!!
+//Дан массив с числами. После каждого однозначного числа вставьте еще такое же.
+let arr = [121, 1, 121, 1];
+
+let split = String(arr).split(',');
+
+let double = split.map(function(elem) {
+  if (elem.length == 1){
+  	return elem + elem;
+    } else {
+    	return elem;
+  }
+});
+let result = double.map(Number);
+console.log(result);
+</script>
+
+
+<script> //3.7.7
+//Дана строка. Удалите из нее все гласные буквы.
+let str = 'Remove all vowel letters from it';
+let vowels = ['a', 'e', 'i', 'o', 'u'];
+let split = str.split('');
+let novowels = split.filter(function(elem) {
+	return !vowels.includes(elem);
+});
+let res = novowels.join('');
+console.log(res);
+</script>
+
+<script> //3.7.8
+//ЗАДАЧА69 !!!!
+//Дана строка. Сделайте заглавной последнюю букву каждого слова в этой строке.
+let str = 'Сделайте заглавной последнюю букву каждого слова';
+let split = str.split(' ');
+let up = 	split.map((elem) => {
+	return elem.slice(0, -1) + elem.slice(-1).toUpperCase();
+});
+let result = up.join(' ');
+console.log(result);
+</script>
+
+<script> //3.7.9
+//ЗАДАЧА70 !!!!
+//Найдите сумму элементов этой структуры.
+let data = [
+	{
+		1: [1, 2, 3],
+		2: [1, 2, 3],
+		3: [1, 2, 3],
+	},
+	{
+		1: [1, 2, 3],
+		2: [1, 2, 3],
+		3: [1, 2, 3],
+	},
+	{
+		1: [1, 2, 3],
+		2: [1, 2, 3],
+		3: [1, 2, 3],
+	},
+];
+	let sum = 0;
+	for (let objs of data){
+		for (let keys in objs){
+			for (let nums of objs[keys]){
+				sum += nums;
+			}
+		}
+	}
+	console.log(sum);
+</script>
