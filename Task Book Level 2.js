@@ -231,3 +231,234 @@ for (let i = 0; i < arr.length; i++) {
 res = sumEven/sumOdd;
 console.log(res);
 </script>
+
+//ЗАДАЧА63
+<script> //2.6.1
+//Дана некоторая строка с буквами и цифрами. Получите массив позиций всех цифр из этой строки.
+let str = '1a1b1c1';
+let arr = str.split('');
+let indexes = [];
+for (let i=0; i<arr.length; i++){
+	if (isFinite(arr[i])){
+		indexes.push(i);
+	}
+}
+console.log(indexes);
+</script>
+
+//ЗАДАЧА64
+<script> //2.6.2
+//Напишите код, который перевернет числа в этом массиве по следующему принципу: [321, 654, 987]
+let arr2 = [123, 456, 789];
+let arr3 = arr2.toString().split(',');
+let result = arr3.map(function(arr4) {
+	return arr4.split('').reverse().join('');
+});
+console.log(result);
+</script>
+
+//ЗАДАЧА65
+<script> //2.6.3
+//Отделите тройки цифр пробелами, начиная с конца числа. В нашем случае должно получится следующее: '1 234 567'
+let str = '1234567';
+let split = str.split('').reverse();
+
+let arr  = [];
+let chunks = Math.ceil(split.length / 3);
+	for (let i = 0; i < chunks; i++) {
+		let elems = split.splice(0, 3).reverse().join('');
+		arr.push(elems);
+}
+arr.reverse();
+console.log(arr);
+</script>
+
+<script> //2.6.4
+//Смените регистр букв этой строки на противоположный. 'aBcDe'
+let string = 'AbCdE';
+let split = string.split('');
+for (let i = 0; i < split.length; i++) {
+	if (i % 2 !== 0) {
+  split[i] = split[i].slice(0, 1).toUpperCase();
+}
+if (i % 2 == 0) {
+split[i] = split[i].slice(0, 1).toLowerCase();
+}
+}
+let result = split.join('');
+console.log(result);
+</script>
+
+//ЗАДАЧА66
+<script> //2.6.5
+//Слейте пары элементов массива с числами вместе: [12, 34, 56]
+let arr = [1, 2, 3, 4, 5, 6];
+let arr2  = [];
+let chunks = arr.length / 2;
+	for (let i = 0; i < chunks; i++) {
+		let elems = arr.splice(0, 2).join('');
+		arr2.push(elems);
+		}
+		console.log(arr2);
+</script>
+
+<script> //2.6.6
+//Сделайте заглавным первый символ каждого второго слова в этой строке. В нашем случае должно получится следующее: 'aaa Bbb ccc Eee fff'
+let string = 'aaa bbb ccc eee fff';
+let split = string.split(' ');
+for (let i = 0; i < split.length; i++) {
+	if (i % 2 !== 0) {
+  split[i] = split[i].slice(0, 1).toUpperCase() + split[i].slice(1);
+}
+}
+let result = split.join(' ');
+console.log(result);
+</script>
+
+<script> //2.7.1
+//Переведите в верхний регистр все подстроки, в которых количество букв меньше или равно трем. В нашем случае должно получится следующее: 'A BC DEF ghij'
+let str = 'a bc def ghij';
+let split = str.split(' ');
+for (let i = 0; i < split.length; i++) { 
+	if (split[i].length <= 3) {
+		split[i] = split[i].toUpperCase();
+	}
+}
+console.log(split);
+</script>
+
+<script> //2.7.2
+//Дан символ. Узнайте, в каком регистре этот символ - в верхнем или нижнем.
+let str = 'abCD';
+function defineCase(simbol) {
+	if (simbol >= 'a' && simbol <= 'z') {
+		return 'lowercase';
+	} else if (simbol >= 'A' && simbol <= 'Z') {
+		return 'uppercase';
+	} else {
+	return 'not english alphabet';
+	}
+}
+console.log(defineCase(str[3]));
+</script>
+
+<script> //2.7.3
+//Удалите из этого числа все нечетные цифры. В нашем случае получится такой результат:28
+let num = 123789;
+let split = String(num).split('');
+
+let arr = split.filter(function(elem) {
+	return elem % 2 == 0; //оставляет все четные
+});
+let str2 = arr.join('');
+console.log(str2);
+</script>
+
+<script> //2.8.1
+//Дана строка с буквами. Проверьте, что в этой строке не более двух заглавных букв.
+let string = 'Строка С Буквами';
+let count = [];
+	for (let i = 0; i < string.length; i++) { 
+		if (string[i] >= 'А' && string[i] <= 'Я') {
+			count.push(string[i]);
+	  }
+	}
+	if (count.length > 2){
+		console.log('FALSE - more than 2 uppercase');
+	}
+</script>
+
+<script> //2.8.2
+//Удалите из этой строки все подстроки, в которых количество символов больше трех. В нашем случае должно получится следующее:'1 22 333 22 1'
+let str = '1 22 333 4444 22 5555 1';
+let split = str.split(' ');
+let arr = split.filter(function (elem) {
+	return elem.length <= 3;
+	});
+let str2 = arr.join(' ');
+console.log(str2);
+
+</script>
+
+<script> //2.8.3
+//Слейте эти массивы в новый массив следующим образом:[1, 2, 'a', 'b', 'c', 3]
+let arr1 = [1, 2, 3];
+let arr2 = ['a', 'b', 'c'];
+let arr3 = [1, 2, ...arr2, 3];
+console.log(arr3);
+</script>
+
+<script> //2.9.1
+//Найдите сумму пар цифр этого числа: 12 + 34 + 56
+let num = 123456;
+let arr  = String(num).split('');
+
+let arr2 = [];
+let chunks = arr.length / 2;
+	for (let i = 0; i < chunks; i++) {
+		let elems = arr.splice(0, 2).join('');
+		arr2.push(elems);
+		}
+
+let sum = 0;
+for (let i = 0; i < arr2.length; i++) {
+	sum += Number(arr2[i]);
+}
+console.log(sum);
+</script>
+
+<script> //2.9.2
+//Выведите в консоль элементы этого массива в обратном порядке.
+let arr = [1, 2, 3, 4, 5];
+console.log(arr.reverse());
+</script>
+
+<script> //2.10.1
+//Дана строка с буквами и цифрами. Проверьте, что в этой строке не более трех букв.
+let str = '1a2b3c4d';
+let arr = str.split('');
+let letters = [];
+for (let i=0; i<arr.length; i++){
+	if (isFinite(arr[i]) == false){
+		letters.push(arr[i]);
+	}
+}
+let condition = letters.length <= 3 ? true : false;
+console.log(condition);
+</script>
+
+<script> //2.10.2
+//Дано число. Получите первую четную цифру с конца этого числа.
+let num = 123456;
+let str2 = String(num).split('').reverse();
+for (let i=0; i <str2.length; i++){
+		if (str2[i] % 2 == 0){
+		console.log(str2[i]);
+		break;
+}
+}
+</script>
+
+<script> //2.10.3
+//Замените в ней первый символ каждого слова на '!': '!bcde !bcde !bcde'
+let str = 'abcde abcde abcde';
+let arr = str.split(' ');
+for (let i = 0; i < arr.length; i++) { 
+arr[i] = arr[i].slice(0, 0) + '!' + arr[i].slice(1); 
+}
+let str2 = arr.join(' ');
+console.log(str2);
+</script>
+
+<script> //2.10.4
+//Проверьте, что в этом массиве есть два одинаковых элемента подряд.
+function ifDifferent(arr) {
+		for (let i = 0; i < arr.length; i++) { 
+		if (arr[i] == arr[i+1]) {
+			return false;
+		}
+	}
+	return true;
+}
+console.log(ifDifferent([1,2,3,3,4,5]));
+</script>
