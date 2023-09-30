@@ -1,6 +1,5 @@
 
 
-
 <script> ////4.1.1
 ////Сделайте функцию, которая вернет текущий день недели словом.
 function getWeekDay() {
@@ -387,4 +386,154 @@ function fib(n){
 	return b;
 }
 console.log(fib(6));////8
+</script>
+
+
+<script> ////4.6.1
+////Сделайте функцию, которая параметром будет принимать дату в формате год-месяц-день, и определять, существует ли такая дата или нет.
+function isValidDate(d) {
+	let [year, month, day] = d.split('-');
+	let monthActual = Number(month)-1;
+
+	let date = new Date(year, monthActual, day);
+	if (date.getFullYear() == year && date.getMonth() == monthActual && date.getDate() == day) {
+		console.log('Дата корректна');
+	} else {
+		console.log('Дата некорректна');
+	}
+}
+isValidDate('2024-06-31');////пересчитывает в корректную дату
+</script>
+
+<script> ////4.6.2
+////Сделайте функцию, которая сгенерирует строку заданной длины, заполненную случайными латинскими буквами.
+//// = 4.5.5
+</script>
+
+<script> ////4.6.3
+////Сделайте функцию, которая параметром будет получать строку со словами, а возвращать строку в верхнем регистре, состоящую из первых букв слов.
+function getАcronym(str) {
+	let split = str.split(' ');
+	for (let i = 0; i < split.length; i++) {
+	  split[i] = split[i].slice(0, 1).toUpperCase();
+	}
+	let result = split.join('');
+
+	return result;
+ };
+console.log(getАcronym('Союз советских социалистических республик'));
+</script>
+
+<script> ////4.6.4
+////Сделайте функцию, которая параметром будет принимать массив с числами и заменять каждое число на массив его делителей.
+function getDivisors(arr) {
+	let divs = [];
+	for (let num of arr){
+		let div = [];
+			for (let i = 1; i <= num; i++) {
+				if (num % i == 0){
+				div.push(i);
+				}
+			}
+		divs.push(div);
+	}
+	return divs;
+}
+console.log(getDivisors([10, 25, 50]));
+</script>
+
+<script> ////4.6.5
+/*Сделайте функцию, которая параметром будет принимать секунды, а возвращать количество дней, часов, минут и секунд, соответствующих этим секундам, в виде следующего объекта:
+{
+	d: 12,
+	h: 10,
+	m: 59,
+	s: 59,
+}
+*/
+function getDaysHoursMinsSecs(secs) {
+	let days = Math.floor(secs/60/60/24);
+	let hours = Math.floor(secs/60/60) - days*24;
+	let minutes = Math.floor(secs/60) - days*24*60-hours*60;
+	let seconds = secs % 60;
+
+	let obj = {	d: days,
+				h: hours,
+				m: minutes,
+				s: seconds,
+			}
+	return obj;
+}
+console.log(getDaysHoursMinsSecs(90150));////1 1 2 30
+</script>
+
+
+<script> //4.7.1
+//Сделайте функцию, которая параметром будет принимать текст со словами, а возвращать текст, в котором эти слова будут отсортированы в алфавитном порядке.
+function sortWords(str) {
+  let sort = str.toLowerCase().split(' ').sort().join(' ');
+  return sort;
+}
+console.log(sortWords('Сделайте Функцию, которая параметром будет принимать текст со словами, а возвращать слова отсортированые в алфавитном порядке'));
+</script>
+
+<script> //4.7.2
+//Сделайте функцию, которая параметром будет принимать два массива и возвращать массив их общих элементов.
+function getCommonElems(arr, arr2) {
+	let merge = [...arr, ...arr2].sort();
+	let common = [];
+
+	for (let i=0; i <merge.length; i++){
+		if (merge[i] == merge[i+1]){
+			common.push(merge[i]);
+		}
+	}
+	return [...new Set(common)]
+}
+console.log(getCommonElems( [1, 2, 3, 4, 5], [0, 2, 2, 3, 3]));
+</script>
+
+<script> //4.7.3
+// !!!!!!!! Сделайте функцию, которая будет возвращать случайное число. Функция не должна возвращать одно и тоже число два раза подряд.
+function getRandomNumberNoRepeats(min, max) {
+	let lastNumber;
+	const getRandomNumber = () => Math.floor(Math.random()*(max - min+1)+min);
+	const result = () => {
+		let number = getRandomNumber();
+		if (number === lastNumber) {
+			return result();
+		}
+		lastNumber = number;
+		return number;
+	};
+return result;
+};
+
+const getRandomNumber = getRandomNumberNoRepeats(1, 5);
+console.log(getRandomNumber());
+console.log(getRandomNumber());
+console.log(getRandomNumber());
+console.log(getRandomNumber());
+console.log(getRandomNumber());
+</script>
+
+<script> //4.7.4 ????
+/*Сделайте функцию, которая параметром будет принимать массив и элемент и возвращать следующий за ним элемент. Смотрите пример:
+let arr = [1, 2, 3, 4, 5];
+
+func(arr, 1); // 2
+func(arr, 4); // 5
+func(arr, 5); // 1
+*/
+function getNextElement(arr, elem) {
+	for (let i=0; i <arr.length; i++){
+		if (elem == arr[i]){
+			return arr[i+1];
+		}
+		if (i == arr.length){
+			return arr[0];
+		}
+	}
+}
+console.log(getNextElement([1, 2, 3, 4, 5], 5));
 </script>
