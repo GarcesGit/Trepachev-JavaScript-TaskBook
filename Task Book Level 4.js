@@ -537,3 +537,194 @@ function getNextElement(arr, elem) {
 }
 console.log(getNextElement([1, 2, 3, 4, 5], 5));
 </script>
+
+<script> //4.8.1
+//Сделайте функцию, которая параметром будет принимать массив и возвращать случайный элемент этого массива.
+function getRandomNumOfArr(arr){
+	for (let elem of arr){
+		let min = arr[0];
+		let max = arr[arr.length-1];
+	let result = Math.floor(Math.random()* (max-min+1)) + min;
+	return result;
+	}
+}
+console.log(getRandomNumOfArr([1,2,3,4,5,6,7]));
+</script>
+
+<script> //4.8.2
+//Сделайте функцию, которая параметром будет принимать массив и возвращать массив из N случайных элементов этого массива.
+function getRandomNumsFromArr(arr){
+	let numsArr = [];
+	let min = arr[0];
+	let max = arr[arr.length-1];
+
+	for (let i=0; i < 3; i++) {
+		numsArr.push(Math.floor(Math.random()*(max-min+1))+min);
+	}
+	return numsArr;
+}
+console.log(getRandomNumsFromArr([1,2,3,4,5,6,7]));
+</script>
+
+<script> //4.8.3
+//Сделайте функцию, которая параметром будет принимать массив и возвращать случайный элемент этого массива так, чтобы одинаковые элементы не возвращались два раза подряд.
+function getRandomNumOfArrNoRepeats(arr){
+	let min = arr[0];
+	let max = arr[arr.length-1];
+	let lastNumber;
+	const getRandomNumber = () => Math.floor(Math.random()*(max - min+1)+min);
+	const result = () => {
+		let number = getRandomNumber();
+		if (number === lastNumber) {
+			return result();
+		}
+		lastNumber = number;
+		return number;
+	};
+return result;
+};
+
+const getRandomNumber = getRandomNumOfArrNoRepeats([1,2,3,4,5,6,7]);
+console.log(getRandomNumber());
+console.log(getRandomNumber());
+console.log(getRandomNumber());
+console.log(getRandomNumber());
+console.log(getRandomNumber());
+</script>
+
+<script> //4.8.4 ЗАДАЧА77
+// !!!! Сделайте функцию, которая будет возвращать массив простых чисел из заданного промежутка.
+function isPrime(num) {
+	let prime = [];
+	for (let i = 11; i <= num; i++) { // числа
+		for (let j = 2; j <= i; j++) { // делители кроме 1 и числа
+			if (i % j == 0 && j < i) {
+				break;
+				} else if (j == i) {
+					prime.push(i);
+			}
+		}
+	}
+	return prime;
+}
+console.log(isPrime(20));
+</script>
+
+<script> //4.8.5
+//Сделайте функцию, которая параметрами будет принимать любое количество чисел, а возвщать их сумму.
+function sumNums(num) {
+	let sum = 0;
+	for (let i = 1; i <= num; i++) {
+		sum += i;
+	}
+	return sum;
+}
+console.log(sumNums(20));
+</script>
+
+<script> //4.8.6 ????
+//Сделайте функцию, которая заполнит массив N случайными числами из заданного промежутка так, чтобы в массиве не было подряд двух одинаковых чисел.
+
+</script>
+
+<script> //4.8.7
+//Сделайте функцию, которая заполнит массив N случайными числами из заданного промежутка так, чтобы числа не повторялись.
+function getRandomNumberNoRepeats(min, max, length) {
+	let arr = [];
+
+	for (let i = 0; i <= length; i++){
+		let randomNumber = Math.floor(Math.random()*(max - min+1)+min);
+			arr.push(randomNumber);
+		let filter = Array.from(new Set(arr));
+
+
+		if (filter.length < length){
+			arr.push(randomNumber); //ЭТО НЕ РАБОТАЕТ
+		}else{
+			return filter;
+		}
+	}
+}
+console.log(getRandomNumberNoRepeats(1, 10, 5));
+</script>
+
+
+<script> //4.9.1
+	//Сделайте функцию, которая будет возвращать сколько дней осталось до ближайшего 29 февраля.
+	function getDaysTo29Feb(){
+		let arrLeap = [];
+		for (let i = 2024; i <= 2030; i++){
+			let date = new Date(i, 2, 0);
+			if (date.getDate() == 29){
+				arrLeap.push(i);
+				break;
+			}
+		}
+		let next29Feb = new Date(arrLeap[0], 2, 0);
+		let now = new Date();
+		let days = Math.floor((next29Feb-now)/1000/60/60/24);
+		return days;
+	}
+	console.log(getDaysTo29Feb());
+</script>
+
+
+<script> //4.9.2
+//Сделайте функцию, которая будет возвращать дату следующей масленницы, которая празднуется в последнее воскресенье зимы.
+function getDaysToShrovetide(){
+
+}
+console.log(getDaysToShrovetide());
+</script>
+
+
+<script> //4.9.3
+//Сделайте функцию, которая будет возвращать случайный цвет.
+let colors = ['Beige', 'Black', 'Blue', 'Brown', 'Fuchsia', 'Golden', 'Green', 'Grey', 'Khaki', 'Lilac', 'Lime', 'Magenta', 'Mahogany', 'Nacreous', 'Orange', 'Pink', 'Purple', 'Red', 'Rosy', 'Salmon', 'Silver', 'Teal', 'Turquoise', 'White', 'Yellow'];
+
+function randomColor(arr) {
+	let random = Math.floor(Math.random() * arr.length);
+	return arr[random];
+}
+console.log(randomColor(colors));
+</script>
+
+
+<script> //4.9.4
+//Сделайте функцию, которая параметром будет принимать массив чисел и возвращать массив общих делителей всех чисел из переданного массива.
+function getCommonDivisors(arr) {
+	let divisors = [];
+	let commonDivisors = [];
+
+	for (let num of arr) {
+		for (let i = 1;  i < num; i++) {
+			if (num % i == 0) {
+				divisors.push(i);
+			}
+		}
+	}
+	divisors.sort();
+	for (let i = 0;  i < divisors.length; i++) {
+		if (divisors[i] == divisors[i+2]) {
+			commonDivisors.push(divisors[i]);
+		}
+	}
+	return commonDivisors;
+}
+console.log(getCommonDivisors([12, 15, 21]));
+</script>
+
+
+<script> //4.9.5
+//Сделайте функцию, которая параметром будет принимать двухмерный массив чисел и возвращать массив максимальных чисел в каждом подмассиве.
+function getMaxNumbers(arr) {
+	let maxNumbers = [];
+	for (let i = 0; i < arr.length; i++){
+		for (let j = 0; j < arr[i].length; j++){
+		}
+		maxNumbers.push(Math.max.apply(null, arr[i]));
+	}
+	return maxNumbers;
+}
+console.log(getMaxNumbers([[2, 7, 4], [5, 8, 7]]));
+</script>
